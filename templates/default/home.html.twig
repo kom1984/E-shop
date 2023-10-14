@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil{% endblock %}
+{% block page_title %}Accueil{% endblock %}
+
+{% block body %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for product in products %}
+                    <div class="col-md-4 mt-4">
+                        <div class="card shadow-sm h-100">
+                            <img class="img-fluid"
+                                 src="{{ product.imageUrl }}" alt="{{ product.codeProduct }}">
+                            <div class="card-body">
+                                <h5 class="card-title">ProductName: {{ product.name }}</h5>
+                                <small class="text-muted">
+                                     Product Code:{{ product.codeProduct }}
+                                </small>
+                                <h4 class="card-text">{{ product.price}}.€</h4>
+                                <p class="card-text">{{ product.description [:150] ~ '...' }}</p>
+                                <div class="row">
+                                    <div class="col"> <a href="{{ product.id }}" class="btn btn-secondary">More Detail</a></div>
+                                    <div class="col my-2"><a href="#" class="btn btn-success">Add to cart</a></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        Currently No products.
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
